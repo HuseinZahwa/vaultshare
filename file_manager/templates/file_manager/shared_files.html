@@ -1,0 +1,140 @@
+<!-- # ///////////////////////////////////////////////////////////////////////////
+# // File Name: shared_files.html
+# // Group Number: Group 9
+# // Group Members Names : Husein Zahwa
+# // Group Members Seneca Email : hnzahwa@myseneca.ca
+# // Date : November 15, 2024
+# // Authenticity Declaration :
+# // I declare this submission is the result of my group work and has not been
+# // shared with any other groups/students or 3rd party content provider. This submitted
+# // piece of work is entirely of my own creation.
+# ////////////////////////////// -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Shared Files</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .file-info {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .file-name, .upload-date {
+            font-weight: bold;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* Updated button and input field styling */
+        .button {
+            padding: 10px 20px;
+            color: #ffffff;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: calc(100% - 24px); /* Matches the button width */
+            max-width: 300px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover, .back-link:hover {
+            background-color: #555;
+        }
+
+        .error-message {
+            color: #d9534f;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>View Shared Files</h2>
+
+        <form method="post" action="{% url 'shared_files' %}">
+            {% csrf_token %}
+            <label for="encrypted_id">Enter Encrypted ID:</label>
+            <input type="text" id="encrypted_id" name="encrypted_id" required style="width: 80%; padding: 8px;">
+            <button type="submit" class="button" style="width: auto;">Submit</button>
+        </form>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'error' %}alert-error{% elif message.tags == 'success' %}alert-success{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if file %}
+            <div class="file-info">
+                <p>File Name: <span>{{ file.file.name|slice:"8:" }}</span></p>
+                <p>Uploaded on: <span>{{ file.uploaded_at }}</span></p>
+            </div>
+            <a href="{% url 'download_file' file.id %}" class="button">Download File</a>
+        {% endif %}
+
+        <a href="{% url 'dashboard' %}" class="back-link">Back to Dashboard</a>
+    </div>
+</body>
+</html>

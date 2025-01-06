@@ -1,0 +1,133 @@
+<!-- file_manager/templates/file_manager/register.html -->
+<!-- # ///////////////////////////////////////////////////////////////////////////
+# // File Name: register.html
+# // Group Number: Group 9
+# // Group Members Names : Husein Zahwa
+# // Group Members Seneca Email : hnzahwa@myseneca.ca
+# // Date : November 15, 2024
+# // Authenticity Declaration :
+# // I declare this submission is the result of my group work and has not been
+# // shared with any other groups/students or 3rd party content provider. This submitted
+# // piece of work is entirely of my own creation.
+# ////////////////////////////// -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaultShare - Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        label {
+            text-align: left;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .button {
+            padding: 10px;
+            color: #ffffff;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        .link {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create an Account</h1>
+
+        <!-- Error Messages Section -->
+        {% if form.errors %}
+            <div class="error-messages">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <p style="color: red;">{{ error }}</p> <!-- Displays each error in red -->
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" value="{{ form.username.value|default_if_none:'' }}"  required>
+
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" value="{{ form.username.value|default_if_none:'' }}"  required>
+
+            <label for="password1">Password</label>
+            <input type="password" id="password1" name="password1" required>
+
+            <label for="password2">Confirm Password</label>
+            <input type="password" id="password2" name="password2" required>
+
+            <button type="submit" class="button">Register</button>
+        </form>
+
+        <p>Already have an account? <a href="{% url 'login' %}" class="link">Login here</a></p>
+    </div>
+</body>
+
+</html>

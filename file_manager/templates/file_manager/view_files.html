@@ -1,0 +1,136 @@
+<!-- # ///////////////////////////////////////////////////////////////////////////
+# // File Name: view_files.html
+# // Group Number: Group 9
+# // Group Members Names : Husein Zahwa
+# // Group Members Seneca Email : hnzahwa@myseneca.ca
+# // Date : November 15, 2024
+# // Authenticity Declaration :
+# // I declare this submission is the result of my group work and has not been
+# // shared with any other groups/students or 3rd party content provider. This submitted
+# // piece of work is entirely of my own creation.
+# ////////////////////////////// -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Uploaded Files</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .file-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .button {
+            padding: 8px 12px;
+            color: #ffffff;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        .separator {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #333;
+            color: #ffffff;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Uploaded Files</h2>
+
+        {% if files_with_ids %}
+            <ul>
+                {% for item in files_with_ids %}
+                    <li>
+                        <span>{{ item.file.file.name }} - Uploaded on {{ item.file.uploaded_at }}</span>
+                        <div class="file-actions">
+                            <a href="{% url 'shared_download' item.file.id %}" class="button">Download</a>
+                            <span class="separator">or</span>
+                            <button onclick="copyID('{{ item.encrypted_id }}')" class="button">Copy ID</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You haven't uploaded any files yet.</p>
+        {% endif %}
+
+        <a href="{% url 'dashboard' %}" class="back-link">Back to Dashboard</a>
+    </div>
+
+    <script>
+        function copyID(id) {
+            navigator.clipboard.writeText(id).then(function() {
+                alert('Encrypted ID copied to clipboard!');
+            }).catch(function(error) {
+                alert('Failed to copy ID: ' + error);
+            });
+        }
+    </script>
+</body>
+</html>

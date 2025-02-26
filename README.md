@@ -17,14 +17,34 @@
 
 - ## 📸 Screenshots
 
-### 🔐 Login Page
-![Login Page]()
+## VaultShare
 
-### 📁 Secure File Uploads
-![File Upload]()
+A secure file-sharing application built with Django, featuring user authentication and encrypted file uploads.
 
-### 🚀 Dashboard
-![Dashboard]()
+### **Screenshots**
+
+#### **Login Page**
+![Login Page](images/LoginPage.png)
+
+#### **Home Page**
+![Home Page](images/HomePage.png)
+
+#### **Upload a File**
+![Upload a File](images/UploadAFile.png)
+
+#### **Your Uploaded Files**
+![Your Uploaded Files](images/YourUploadedFiles.png)
+
+#### **Copy File ID**
+![Copy File ID](images/CopyFileID.png)
+
+#### **Shared Files**
+![Shared Files](images/SharedFiles.png)
+
+#### **Use a File ID**
+![Use a File ID](images/UseAFileID.png)
+
+
 
 
 ## 📥 Installation Guide

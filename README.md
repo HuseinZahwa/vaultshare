@@ -48,8 +48,31 @@ A secure file-sharing application built with Django, featuring user authenticati
 
 
 ## 📥 Installation Guide
-
-### **1️⃣ Clone the Repository**
 ```sh
-git clone https://github.com/YourUsername/VaultShare.git
-cd VaultShare
+1️⃣ Clone the Repository
+
+git clone https://github.com/HuseinZahwa/vaultshare.git
+cd vaultshare
+
+2️⃣ Set Up a Virtual Environment
+
+python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+
+3️⃣ Install Dependencies
+
+pip install -r requirements.txt
+
+4️⃣ Apply Migrations
+
+python manage.py migrate
+
+5️⃣ Create a Superuser (Optional)
+
+python manage.py createsuperuser
+
+6️⃣ Run the Development Server
+
+python manage.py runserver
+
+Now, open your browser and go to http://127.0.0.1:8000/ 🎉

@@ -18,13 +18,13 @@
 - ## 📸 Screenshots
 
 ### 🔐 Login Page
-![Login Page](images/login.png)
+![Login Page]()
 
 ### 📁 Secure File Uploads
-![File Upload](images/upload.png)
+![File Upload]()
 
 ### 🚀 Dashboard
-![Dashboard](images/dashboard.png)
+![Dashboard]()
 
 
 ## 📥 Installation Guide
